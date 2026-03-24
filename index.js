@@ -4,6 +4,7 @@ const OpenAI = require("openai");
 const cors = require("cors");
 
 const app = express();
+app.set('view engine', 'ejs');
 app.use(cors());
 app.use(express.json());
 
@@ -12,7 +13,7 @@ const client = new OpenAI({
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
+  res.render('index');
 })
 app.post("/chat", async (req, res) => {
   try {
