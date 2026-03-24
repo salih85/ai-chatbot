@@ -8,16 +8,13 @@
 </head>
 <body>
 
-    <!-- Main Page Content Placeholder -->
     <div class="welcome-container">
         <h1>Experience Next-Gen AI</h1>
         <p>Click the bubble in the bottom right to start chatting.</p>
     </div>
 
-    <!-- Chat Widget Container -->
     <div id="chat-widget-container">
-        
-        <!-- Chat Modal -->
+
         <div id="chat-modal">
             <div class="chat-header">
                 <div class="header-info">
@@ -55,7 +52,7 @@
             </div>
         </div>
 
-        <!-- Floating Action Button -->
+      
         <button id="chat-toggle-btn">
             <svg id="chat-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path></svg>
         </button>
@@ -71,9 +68,19 @@
         const typingIndicator = document.getElementById('typing-indicator');
 
         // Toggle Modal
-        chatToggleBtn.addEventListener('click', () => {
+        function toggleModal() {
             chatModal.classList.toggle('active');
             if(chatModal.classList.contains('active')) {
+                userInput.focus();
+            }
+        }
+
+        chatToggleBtn.addEventListener('click', toggleModal);
+
+        // Open by default on Desktop
+        window.addEventListener('load', () => {
+            if (window.innerWidth >= 1024) {
+                chatModal.classList.add('active');
                 userInput.focus();
             }
         });
